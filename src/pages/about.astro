@@ -1,0 +1,137 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+---
+
+<PageLayout title="About" description="Learn more about Timothy Chan – software engineer, tech enthusiast, and lifelong learner.">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
+    <!-- Header -->
+    <div class="mb-16 animate-slide-up">
+      <p class="section-subheading">&gt; About Me</p>
+      <h1 class="section-heading text-5xl">Who I Am</h1>
+    </div>
+
+    <div class="grid lg:grid-cols-3 gap-12">
+      <!-- Main Bio -->
+      <div class="lg:col-span-2 space-y-6 text-slate-300 leading-relaxed">
+        <p>
+          Hi, I'm <strong class="text-brand">Timothy Chan</strong> — a software engineer based in [Your City].
+          I'm passionate about writing clean, maintainable code and building products that make a real difference.
+        </p>
+        <p>
+          My journey into software began [describe your story here — e.g., "during university when I built my first web app"
+          or "when I discovered how programming could automate repetitive tasks"]. Since then, I've been
+          continuously learning and pushing the boundaries of what I can build.
+        </p>
+        <p>
+          When I'm not coding, you'll find me [hobbies/interests — e.g., exploring hiking trails, reading tech blogs,
+          experimenting with new frameworks, or contributing to open-source projects].
+        </p>
+        <p>
+          I believe in building with purpose: every line of code should serve the user and the broader goal.
+          I'm always excited to collaborate on meaningful projects and connect with like-minded people.
+        </p>
+
+        <!-- Experience Timeline -->
+        <div class="mt-12">
+          <h2 class="text-2xl font-bold text-slate-100 mb-8">Experience</h2>
+          <div class="space-y-8 relative before:absolute before:left-0 before:top-2 before:bottom-2 before:w-px before:bg-surface-border">
+            {[
+              {
+                role: 'Senior Software Engineer',
+                company: 'Company Name',
+                period: '2023 – Present',
+                description: 'Describe your responsibilities and achievements here.',
+              },
+              {
+                role: 'Software Engineer',
+                company: 'Company Name',
+                period: '2021 – 2023',
+                description: 'Describe your responsibilities and achievements here.',
+              },
+              {
+                role: 'Junior Developer',
+                company: 'Company Name',
+                period: '2019 – 2021',
+                description: 'Describe your responsibilities and achievements here.',
+              },
+            ].map(job => (
+              <div class="pl-8 relative before:absolute before:left-[-4px] before:top-2 before:w-2 before:h-2 before:bg-brand before:rounded-full">
+                <p class="text-xs font-mono text-slate-500 mb-1">{job.period}</p>
+                <h3 class="font-semibold text-slate-100">{job.role}</h3>
+                <p class="text-brand text-sm mb-2">{job.company}</p>
+                <p class="text-slate-400 text-sm">{job.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <!-- Education -->
+        <div class="mt-12">
+          <h2 class="text-2xl font-bold text-slate-100 mb-8">Education</h2>
+          <div class="card">
+            <p class="text-xs font-mono text-slate-500 mb-1">2015 – 2019</p>
+            <h3 class="font-semibold text-slate-100">Bachelor of Computer Science</h3>
+            <p class="text-brand text-sm">University Name</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sidebar -->
+      <div class="space-y-8">
+        <!-- Avatar placeholder -->
+        <div class="card flex flex-col items-center text-center p-8">
+          <div class="w-32 h-32 rounded-full bg-surface-border flex items-center justify-center mb-4 border-2 border-brand/30">
+            <span class="text-4xl font-bold text-brand font-mono">TC</span>
+          </div>
+          <h2 class="font-bold text-slate-100 text-xl">Timothy Chan</h2>
+          <p class="text-slate-400 text-sm mt-1">Software Engineer</p>
+          <p class="text-slate-500 text-xs font-mono mt-1">📍 [Your City]</p>
+          <div class="mt-4 flex gap-3">
+            <a href="https://github.com/timothythchan" target="_blank" rel="noopener noreferrer"
+               class="text-slate-400 hover:text-brand transition-colors text-xs font-mono">GitHub</a>
+            <span class="text-slate-600">·</span>
+            <a href="https://linkedin.com/in/timothythchan" target="_blank" rel="noopener noreferrer"
+               class="text-slate-400 hover:text-brand transition-colors text-xs font-mono">LinkedIn</a>
+          </div>
+        </div>
+
+        <!-- Skills -->
+        <div class="card">
+          <h3 class="font-semibold text-slate-100 mb-4">Skills</h3>
+          <div class="flex flex-wrap gap-2">
+            {[
+              'TypeScript', 'Python', 'React', 'Node.js', 'Astro',
+              'PostgreSQL', 'Docker', 'AWS', 'Git', 'REST APIs',
+              'GraphQL', 'CI/CD',
+            ].map(skill => (
+              <span class="tag">{skill}</span>
+            ))}
+          </div>
+        </div>
+
+        <!-- Interests -->
+        <div class="card">
+          <h3 class="font-semibold text-slate-100 mb-4">Interests</h3>
+          <ul class="space-y-2 text-slate-400 text-sm">
+            {[
+              '🔭 Open Source',
+              '📚 Technical Writing',
+              '🎮 [Hobby]',
+              '🌍 [Hobby]',
+            ].map(interest => (
+              <li>{interest}</li>
+            ))}
+          </ul>
+        </div>
+
+        <!-- Resume Download -->
+        <a href="/resume.pdf" download class="btn-outline w-full justify-center">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+          </svg>
+          Download Resume
+        </a>
+      </div>
+    </div>
+  </div>
+</PageLayout>

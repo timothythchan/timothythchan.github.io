@@ -1,0 +1,59 @@
+---
+import { getCollection } from 'astro:content';
+import PageLayout from '../../layouts/PageLayout.astro';
+
+const posts = (await getCollection('blog', ({ data }) => !data.draft))
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+
+const formatDate = (date: Date) =>
+  date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+---
+
+<PageLayout title="Blog" description="Thoughts, guides, and insights from Timothy Chan on software engineering and technology.">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
+    <!-- Header -->
+    <div class="mb-16 animate-slide-up">
+      <p class="section-subheading">&gt; Writing</p>
+      <h1 class="section-heading text-5xl">Blog</h1>
+      <p class="text-slate-400 max-w-2xl mt-4">
+        Thoughts on software engineering, tools, and technology. I write about things I learn and find interesting.
+      </p>
+    </div>
+
+    <!-- Posts -->
+    {posts.length === 0 ? (
+      <div class="text-center py-24 text-slate-500">
+        <p class="font-mono">// No posts yet. Check back soon!</p>
+      </div>
+    ) : (
+      <div class="space-y-6">
+        {posts.map(post => (
+          <a
+            href={`/blog/${post.slug}`}
+            class="card flex flex-col sm:flex-row sm:items-start gap-4 hover:border-brand/40 transition-colors duration-200 group"
+          >
+            <div class="sm:w-32 shrink-0">
+              <p class="text-xs font-mono text-slate-500">{formatDate(post.data.date)}</p>
+            </div>
+            <div class="flex-1">
+              <h2 class="font-semibold text-slate-100 text-lg mb-2 group-hover:text-brand transition-colors">
+                {post.data.title}
+              </h2>
+              <p class="text-slate-400 text-sm leading-relaxed mb-3">{post.data.description}</p>
+              <div class="flex flex-wrap gap-2">
+                {post.data.tags.map((tag: string) => (
+                  <span class="tag">{tag}</span>
+                ))}
+              </div>
+            </div>
+            <div class="shrink-0 text-brand opacity-0 group-hover:opacity-100 transition-opacity self-center">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+              </svg>
+            </div>
+          </a>
+        ))}
+      </div>
+    )}
+  </div>
+</PageLayout>
