@@ -1,132 +1,133 @@
 ---
-import PageLayout from '../layouts/PageLayout.astro';
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ThreeBackground from '../components/ThreeBackground.astro';
+import Navigation from '../components/Navigation.astro';
+import ProjectCard from '../components/ProjectCard.astro';
 
-const projects = [
-  {
-    title: 'Project Alpha',
-    description: 'A brief description of this project and the problem it solves. What technologies did you use? What was the impact?',
-    tags: ['TypeScript', 'React', 'Node.js'],
-    github: 'https://github.com/timothythchan/project-alpha',
-    demo: 'https://project-alpha.vercel.app',
-    status: 'Live',
-  },
-  {
-    title: 'Project Beta',
-    description: 'A brief description of this project and the problem it solves. What technologies did you use? What was the impact?',
-    tags: ['Python', 'FastAPI', 'PostgreSQL'],
-    github: 'https://github.com/timothythchan/project-beta',
-    demo: '',
-    status: 'In Progress',
-  },
-  {
-    title: 'Project Gamma',
-    description: 'A brief description of this project and the problem it solves. What technologies did you use? What was the impact?',
-    tags: ['Astro', 'Tailwind CSS'],
-    github: 'https://github.com/timothythchan/project-gamma',
-    demo: 'https://project-gamma.netlify.app',
-    status: 'Archive',
-  },
-  {
-    title: 'Project Delta',
-    description: 'A brief description of this project and the problem it solves. What technologies did you use? What was the impact?',
-    tags: ['Docker', 'Go', 'Redis'],
-    github: 'https://github.com/timothythchan/project-delta',
-    demo: '',
-    status: 'Live',
-  },
-];
-
-const statusColors: Record<string, string> = {
-  Live: 'text-green-400 bg-green-400/10 border-green-400/20',
-  'In Progress': 'text-yellow-400 bg-yellow-400/10 border-yellow-400/20',
-  Archive: 'text-slate-400 bg-slate-400/10 border-slate-400/20',
-};
+const allProjects = await getCollection('projects');
+const featuredProjects = allProjects.filter(p => p.data.featured);
+const otherProjects = allProjects.filter(p => !p.data.featured);
 ---
 
-<PageLayout title="Projects" description="A showcase of Timothy Chan's software projects and open-source work.">
-  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
-    <!-- Header -->
-    <div class="mb-16 animate-slide-up">
-      <p class="section-subheading">&gt; My Work</p>
-      <h1 class="section-heading text-5xl">Projects</h1>
-      <p class="text-slate-400 max-w-2xl mt-4">
-        A selection of projects I've built, contributed to, or am currently working on.
-        Each one represents a challenge I enjoyed solving.
-      </p>
-    </div>
+<BaseLayout
+  title="Projects - timothythchan"
+  description="Portfolio of projects by timothythchan"
+>
+  <ThreeBackground />
+  <Navigation />
 
-    <!-- Project Grid -->
-    <div class="grid sm:grid-cols-2 gap-6">
-      {projects.map(project => (
-        <div class="card flex flex-col hover:border-brand/40 transition-colors duration-200 group">
-          <div class="flex items-start justify-between mb-4">
-            <div class="p-2 bg-brand/10 rounded-lg">
-              <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-brand" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
-              </svg>
-            </div>
-            <span class:list={['text-xs font-mono px-2 py-1 rounded-full border', statusColors[project.status] ?? statusColors['Archive']]}>
-              {project.status}
-            </span>
-          </div>
+  <main class="projects-page">
+    <div class="container">
+      <header class="projects-header">
+        <h1 class="page-title">Projects</h1>
+        <p class="page-subtitle">
+          A collection of projects and experiments
+        </p>
+      </header>
 
-          <h3 class="font-bold text-slate-100 text-xl mb-2 group-hover:text-brand transition-colors">
-            {project.title}
-          </h3>
-          <p class="text-slate-400 text-sm leading-relaxed flex-1 mb-4">
-            {project.description}
-          </p>
-
-          <div class="flex flex-wrap gap-2 mb-4">
-            {project.tags.map(tag => (
-              <span class="tag">{tag}</span>
+      {featuredProjects.length > 0 && (
+        <section class="featured-section">
+          <h2 class="section-title">Featured Projects</h2>
+          <div class="projects-grid featured-grid">
+            {featuredProjects.map((project) => (
+              <ProjectCard
+                title={project.data.title}
+                description={project.data.description}
+                image={project.data.image}
+                link={project.data.link}
+                github={project.data.github}
+                tags={project.data.tags}
+                featured={true}
+              />
             ))}
           </div>
+        </section>
+      )}
 
-          <div class="flex items-center gap-4 pt-4 border-t border-surface-border">
-            <a
-              href={project.github}
-              target="_blank"
-              rel="noopener noreferrer"
-              class="flex items-center gap-2 text-slate-400 hover:text-brand transition-colors text-sm font-mono"
-            >
-              <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/>
-              </svg>
-              Source
-            </a>
-            {project.demo && (
-              <a
-                href={project.demo}
-                target="_blank"
-                rel="noopener noreferrer"
-                class="flex items-center gap-2 text-slate-400 hover:text-brand transition-colors text-sm font-mono"
-              >
-                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                </svg>
-                Live Demo
-              </a>
-            )}
+      {otherProjects.length > 0 && (
+        <section class="other-projects">
+          <h2 class="section-title">Other Projects</h2>
+          <div class="projects-grid">
+            {otherProjects.map((project) => (
+              <ProjectCard
+                title={project.data.title}
+                description={project.data.description}
+                image={project.data.image}
+                link={project.data.link}
+                github={project.data.github}
+                tags={project.data.tags}
+              />
+            ))}
           </div>
-        </div>
-      ))}
+        </section>
+      )}
     </div>
+  </main>
+</BaseLayout>
 
-    <!-- GitHub CTA -->
-    <div class="mt-16 text-center">
-      <p class="text-slate-400 mb-4">Want to see more? Check out my GitHub profile.</p>
-      <a
-        href="https://github.com/timothythchan"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="btn-outline"
-      >
-        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
-          <path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/>
-        </svg>
-        Visit GitHub
-      </a>
-    </div>
-  </div>
-</PageLayout>
+<style>
+  .projects-page {
+    min-height: 100vh;
+    padding: calc(var(--nav-height) + 2rem) 2rem 5rem;
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .projects-header {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .page-title {
+    font-family: var(--font-heading);
+    font-size: clamp(2.5rem, 8vw, 4rem);
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+    color: var(--color-text);
+  }
+
+  .page-subtitle {
+    font-size: 1.1rem;
+    color: var(--color-text-dim);
+    max-width: 500px;
+    margin: 0 auto;
+  }
+
+  .featured-section,
+  .other-projects {
+    margin-bottom: 4rem;
+  }
+
+  .section-title {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    color: var(--color-primary);
+  }
+
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .featured-grid {
+    grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+  }
+
+  @media (max-width: 768px) {
+    .projects-page {
+      padding-top: calc(var(--nav-height) + 1rem);
+    }
+
+    .projects-grid,
+    .featured-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
