@@ -1,2 +1,2 @@
 # timothythchan.github.io
-Personal website
+personal website
