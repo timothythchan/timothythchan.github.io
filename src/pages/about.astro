@@ -1,300 +1,203 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
-import ThreeBackground from '../components/ThreeBackground.astro';
-import Navigation from '../components/Navigation.astro';
-import Footer from '../components/Footer.astro';
-
-const base = import.meta.env.BASE_URL;
+import Navigation from "../components/Navigation.astro";
+import Footer from "../components/Footer.astro";
+import { aboutContent } from "../config/content.ts";
 ---
 
-<BaseLayout title="About - timothythchan" description="About timothythchan">
-  <ThreeBackground />
-  <Navigation />
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{aboutContent.meta.title}</title>
+    <meta name="description" content={aboutContent.meta.description} />
+    <script is:inline>
+      (function () {
+        const savedTheme = localStorage.getItem("theme") || "dark";
+        const prefersDark = window.matchMedia(
+          "(prefers-color-scheme: dark)"
+        ).matches;
+        const initialTheme =
+          savedTheme === "system"
+            ? prefersDark
+              ? "dark"
+              : "light"
+            : savedTheme;
 
-  <main class="about-page">
-    <div class="container">
-      <h1 class="page-title">About Me</h1>
+        if (initialTheme === "dark") {
+          document.documentElement.classList.add("dark");
+        } else {
+          document.documentElement.classList.remove("dark");
+        }
+      })();
+    </script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        window
+          .matchMedia("(prefers-color-scheme: dark)")
+          .addEventListener("change", (e) => {
+            if (localStorage.getItem("theme") === "system") {
+              if (e.matches) {
+                document.documentElement.classList.add("dark");
+              } else {
+                document.documentElement.classList.remove("dark");
+              }
+            }
+          });
+      });
+    </script>
+    <style>
+      .dot-hexagon-light {
+        background-image: radial-gradient(
+            circle,
+            #80808045 1px,
+            transparent 1px
+          ),
+          radial-gradient(circle, #80808045 1px, transparent 1px);
+        background-size: 24px 41.57px;
+        background-position:
+          0 0,
+          12px 20.78px;
+      }
 
-      <div class="content-grid">
-        <section class="content-section intro-section">
-          <h2>Hello, I'm Timothy</h2>
-          <p>
-            I'm a mathematician, statistician, and AI engineer passionate about applying
-            rigorous mathematical thinking to real-world problems. My work sits at the
-            intersection of pure mathematics, machine learning, and systems engineering.
-          </p>
-          <p>
-            I build AI-powered systems that tackle inefficiencies across domains,
-            and I use mathematical modelling to uncover dynamics in complex systems
-            including financial markets. I'm dedicated to making mathematics more
-            generalizable and interesting.
-          </p>
-        </section>
-
-        <section class="content-section">
-          <h2>What I Do</h2>
-          <div class="what-i-do-grid">
-            <div class="service-card">
-              <div class="service-icon">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M12 20h9"></path>
-                  <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path>
-                </svg>
-              </div>
-              <h3>Mathematical Research</h3>
-              <p>Exploring mathematical theory and developing generalizable frameworks across domains.</p>
-            </div>
-            <div class="service-card">
-              <div class="service-icon">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
-                </svg>
-              </div>
-              <h3>AI Engineering</h3>
-              <p>Building AI-powered systems and machine learning pipelines that solve real problems.</p>
-            </div>
-            <div class="service-card">
-              <div class="service-icon">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
-                </svg>
-              </div>
-              <h3>Quantitative Analysis</h3>
-              <p>Uncovering financial market dynamics with statistical rigor and algorithmic models.</p>
-            </div>
-            <div class="service-card">
-              <div class="service-icon">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <rect x="4" y="4" width="16" height="16" rx="2" ry="2"></rect>
-                  <rect x="9" y="9" width="6" height="6"></rect>
-                  <line x1="9" y1="1" x2="9" y2="4"></line>
-                  <line x1="15" y1="1" x2="15" y2="4"></line>
-                  <line x1="9" y1="20" x2="9" y2="23"></line>
-                  <line x1="15" y1="20" x2="15" y2="23"></line>
-                  <line x1="20" y1="9" x2="23" y2="9"></line>
-                  <line x1="20" y1="14" x2="23" y2="14"></line>
-                  <line x1="1" y1="9" x2="4" y2="9"></line>
-                  <line x1="1" y1="14" x2="4" y2="14"></line>
-                </svg>
-              </div>
-              <h3>DevOps & Infrastructure</h3>
-              <p>Designing and maintaining scalable infrastructure and deployment pipelines.</p>
-            </div>
-          </div>
-        </section>
-
-        <section class="content-section">
-          <h2>My Approach</h2>
-          <p>
-            I approach every problem with mathematical rigor — whether it's building
-            an AI system, analyzing market data, or designing an algorithm. I believe
-            the best solutions come from first-principles thinking combined with
-            practical engineering.
-          </p>
-          <p>
-            My work spans from theoretical research to production systems, always with
-            an emphasis on correctness, performance, and elegant design.
-          </p>
-        </section>
-
-        <section class="content-section cta-section">
-          <h2>Let's Connect</h2>
-          <p>Interested in my work or want to collaborate on a project?</p>
-          <div class="contact-buttons">
-            <a href={`${base}projects/`} class="btn btn-primary">
-              View My Work
-              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <line x1="5" y1="12" x2="19" y2="12"></line>
-                <polyline points="12 5 19 12 12 19"></polyline>
-              </svg>
-            </a>
-            <a href={`${base}blog/`} class="btn btn-secondary">Read My Blog</a>
-          </div>
-        </section>
+      .dot-hexagon-dark {
+        background-image: radial-gradient(
+            circle,
+            #ffffff35 1px,
+            transparent 1px
+          ),
+          radial-gradient(circle, #ffffff35 1px, transparent 1px);
+        background-size: 24px 41.57px;
+        background-position:
+          0 0,
+          12px 20.78px;
+      }
+    </style>
+  </head>
+  <body
+    class="min-h-screen flex flex-col bg-white dark:bg-neutral-900 transition-colors duration-300"
+  >
+    <div class="relative flex-grow flex flex-col">
+      <div class="absolute inset-0 z-0">
+        <div
+          class="absolute inset-0 -z-10 dot-hexagon-light dark:dot-hexagon-dark"
+        >
+        </div>
+        <div
+          class="absolute inset-0 bg-[radial-gradient(ellipse_80%_80%_at_50%_50%,transparent_0%,rgba(255,255,255,0.5)_60%,rgba(255,255,255,0.9)_85%,white_100%)] dark:bg-[radial-gradient(ellipse_80%_80%_at_50%_50%,transparent_0%,rgba(23,23,23,0.5)_60%,rgba(23,23,23,0.9)_85%,rgb(23,23,23)_100%)] -z-10"
+        >
+        </div>
+        <div
+          class="absolute left-0 right-0 top-0 -z-10 m-auto h-[1200px] w-[1200px] rounded-full bg-neutral-400 opacity-10 blur-[100px]"
+        >
+        </div>
       </div>
+
+      <Navigation />
+      <section class="relative z-20 w-[896px] mx-auto mt-24 mb-12">
+        <div class="relative z-20 w-full mx-auto lg:mx-0">
+          <h2
+            class="text-2xl font-bold tracking-tight text-neutral-900 dark:text-neutral-100 sm:text-3xl lg:text-4xl"
+          >
+            {aboutContent.title}
+          </h2>
+          <div class="flex flex-col md:flex-row gap-8 mt-3 sm:mt-4 lg:mt-6">
+            <div class="w-full md:w-1/2 flex flex-col">
+              <p
+                class="text-sm leading-6 text-gray-600 dark:text-neutral-400 sm:leading-7 lg:leading-8 sm:text-base lg:text-lg"
+              >
+                {aboutContent.description}
+              </p>
+              <div class="mt-auto pt-4 flex flex-wrap gap-2">
+                {
+                  aboutContent.skills.map((skill) => (
+                    <span class="px-3 py-1 text-sm bg-neutral-200 dark:bg-neutral-700 text-neutral-700 dark:text-neutral-200 rounded-full">
+                      {skill}
+                    </span>
+                  ))
+                }
+              </div>
+            </div>
+            <div class="w-full md:w-1/2 flex justify-end">
+              <div class="relative w-[360px] h-[360px]">
+                <img
+                  src={aboutContent.image.src}
+                  alt={aboutContent.image.alt}
+                  class="object-cover rounded-xl w-full h-full"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="flex flex-col md:flex-row mt-20">
+          <div class="flex-1">
+            <h2 class="mb-2 text-2xl font-bold dark:text-neutral-200">
+              {aboutContent.experience.title}
+            </h2>
+            <div class="py-10">
+              {
+                aboutContent.experience.items.map((item) => (
+                  <div class="pb-10 border-l border-gray-200 last:border-l-0 dark:border-neutral-700">
+                    <div class="relative flex flex-col justify-start pl-12">
+                      <div class="absolute top-0 left-0 z-40 flex items-center justify-center -translate-x-1/2 bg-white border rounded-full dark:bg-neutral-950 w-14 h-14 border-neutral-300 dark:border-neutral-700">
+                        <svg
+                          class="w-8 h-8 text-neutral-700 dark:text-neutral-300"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke="currentColor"
+                        >
+                          <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="1.5"
+                            d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"
+                          />
+                        </svg>
+                      </div>
+                      <p class="text-xs uppercase text-neutral-400 dark:text-neutral-500 tracking-widest">
+                        {item.period}
+                      </p>
+                      <h3 class="my-1 text-lg font-bold dark:text-neutral-100">
+                        {item.position}
+                      </h3>
+                      <p class="mb-1 text-sm font-medium dark:text-neutral-300">
+                        {item.company}
+                      </p>
+                      <p class="text-sm font-light text-neutral-600 dark:text-neutral-400">
+                        {item.description}
+                      </p>
+                    </div>
+                  </div>
+                ))
+              }
+            </div>
+          </div>
+
+          <div class="w-[360px] ml-8">
+            <h2 class="mb-2 text-2xl font-bold dark:text-neutral-200">
+              {aboutContent.connect.title}
+            </h2>
+            <div class="py-[30px]">
+              <p
+                class="text-sm leading-6 text-gray-600 dark:text-neutral-400 sm:leading-7 lg:leading-8 sm:text-base lg:text-lg"
+              >
+                {aboutContent.connect.description}
+                <a
+                  href={aboutContent.connect.email.href}
+                  class="text-indigo-600 underline"
+                >
+                  {aboutContent.connect.email.text}
+                </a>
+                .
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
-  </main>
 
-  <Footer />
-</BaseLayout>
-
-<style>
-  .about-page {
-    min-height: 100vh;
-    padding: calc(var(--nav-height) + 2rem) 2rem 5rem;
-  }
-
-  .container {
-    max-width: 900px;
-    margin: 0 auto;
-  }
-
-  .page-title {
-    font-family: var(--font-heading);
-    font-size: clamp(2.5rem, 8vw, 4rem);
-    font-weight: 700;
-    text-align: center;
-    margin-bottom: 3rem;
-    color: var(--color-text);
-  }
-
-  .content-grid {
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-  }
-
-  .content-section {
-    background: var(--color-bg-card);
-    border: 1px solid var(--color-border);
-    border-radius: 1rem;
-    padding: 2rem;
-  }
-
-  .content-section h2 {
-    font-family: var(--font-heading);
-    font-size: 1.5rem;
-    font-weight: 600;
-    margin-bottom: 1rem;
-    color: var(--color-primary);
-  }
-
-  .content-section p {
-    line-height: 1.7;
-    color: var(--color-text-dim);
-    margin-bottom: 1rem;
-  }
-
-  .content-section p:last-of-type {
-    margin-bottom: 0;
-  }
-
-  .what-i-do-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 1rem;
-    margin-top: 1.5rem;
-  }
-
-  .service-card {
-    padding: 1.25rem;
-    background: rgba(59, 130, 246, 0.05);
-    border-radius: 0.75rem;
-    border: 1px solid var(--color-border);
-    transition: all 0.2s ease;
-    cursor: pointer;
-  }
-
-  .service-card:hover {
-    border-color: var(--color-primary);
-    box-shadow: 0 4px 20px rgba(59, 130, 246, 0.1);
-  }
-
-  .service-icon {
-    width: 44px;
-    height: 44px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: rgba(59, 130, 246, 0.1);
-    border-radius: 0.5rem;
-    margin-bottom: 1rem;
-    color: var(--color-primary);
-  }
-
-  .service-card h3 {
-    font-family: var(--font-heading);
-    font-size: 1rem;
-    font-weight: 600;
-    margin-bottom: 0.5rem;
-    color: var(--color-text);
-  }
-
-  .service-card p {
-    font-size: 0.875rem;
-    color: var(--color-text-dim);
-    margin: 0;
-    line-height: 1.5;
-  }
-
-  .cta-section {
-    text-align: center;
-  }
-
-  .cta-section p {
-    margin-bottom: 1.5rem;
-  }
-
-  .contact-buttons {
-    display: flex;
-    gap: 1rem;
-    justify-content: center;
-    flex-wrap: wrap;
-  }
-
-  .btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.875rem 1.75rem;
-    font-size: 1rem;
-    font-weight: 600;
-    font-family: var(--font-body);
-    text-decoration: none;
-    border: none;
-    border-radius: 0.5rem;
-    cursor: pointer;
-    transition: all 0.2s ease;
-  }
-
-  .btn-primary {
-    background: var(--color-primary);
-    color: white;
-    box-shadow: 0 4px 14px rgba(59, 130, 246, 0.4);
-  }
-
-  .btn-primary:hover {
-    background: #2563EB;
-    box-shadow: 0 6px 20px rgba(59, 130, 246, 0.5);
-  }
-
-  .btn-primary svg {
-    transition: transform 0.2s ease;
-  }
-
-  .btn-primary:hover svg {
-    transform: translateX(4px);
-  }
-
-  .btn-secondary {
-    background: transparent;
-    color: var(--color-text);
-    border: 1px solid var(--color-border);
-  }
-
-  .btn-secondary:hover {
-    background: rgba(59, 130, 246, 0.1);
-    border-color: var(--color-primary);
-  }
-
-  @media (max-width: 768px) {
-    .about-page {
-      padding-top: calc(var(--nav-height) + 1rem);
-    }
-
-    .what-i-do-grid {
-      grid-template-columns: 1fr;
-    }
-
-    .contact-buttons {
-      flex-direction: column;
-      align-items: center;
-    }
-
-    .btn {
-      width: 100%;
-      max-width: 280px;
-      justify-content: center;
-    }
-  }
-</style>
+    <Footer />
+  </body>
+</html>
