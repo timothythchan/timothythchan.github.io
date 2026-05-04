@@ -15,7 +15,7 @@ const recentPosts = allBlogPosts
   .slice(0, 3);
 ---
 
-<BaseLayout title="timothythchan">
+<BaseLayout title="Timothy Chan — Mathematician & AI Engineer">
   <ThreeBackground />
   <Navigation />
   <Hero />
@@ -23,8 +23,8 @@ const recentPosts = allBlogPosts
 
   <section class="recent-posts">
     <div class="container">
-      <h2 class="section-title">Recent Posts</h2>
-      <p class="section-subtitle">Latest articles from the blog</p>
+      <h2 class="section-title">Latest Writing</h2>
+      <p class="section-subtitle">Research notes, ideas, and explorations</p>
       <div class="posts-grid">
         {recentPosts.map((post) => (
           <BlogCard
