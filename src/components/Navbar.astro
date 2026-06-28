@@ -1,0 +1,123 @@
+---
+import BooksMarks from "./BooksMarks.astro";
+import Projects from "./Projects.astro";
+import Articles from "./Articles.astro";
+import NavButton from "./index/NavButton.astro";
+import SectionContainer from "./SectionContainer.astro";
+import EducationHub from "./EducationHub.astro";
+import FunHobbies from "./FunHobbies.astro";
+import ShopNow from "./ShopNow.astro";
+---
+
+<div class="flex flex-col">
+  <nav
+    class="flex gap-1 text-hub-inactive rounded-full border-[1px] p-[2px] border-hub-border dark:border-hub-border-dark bg-hub-background-nav dark:bg-hub-background-nav whitespace-nowrap overflow-x-auto scrollbar-hide"
+  >
+    <NavButton class="tab-btn" aria-label="btn-projects" data-target="projects"
+      >Projects</NavButton
+    >
+    <NavButton class="tab-btn" aria-label="btn-articles" data-target="articles"
+      >Articles</NavButton
+    >
+    <NavButton
+      class="tab-btn"
+      aria-label="btn-bookmarks"
+      data-target="booksMarks">Bookmarks</NavButton
+    >
+    <NavButton
+      class="tab-btn"
+      aria-label="btn-education"
+      data-target="educationHub">Education Hub</NavButton
+    >
+    <NavButton
+      class="tab-btn"
+      aria-label="btn-hobbies"
+      data-target="funHobbies">Fun Hobbies</NavButton
+    >
+    <NavButton class="tab-btn" aria-label="btn-shop" data-target="shopNow"
+      >Shop Now</NavButton
+    >
+  </nav>
+
+  <main class="mt-6">
+    <SectionContainer id="projects" class="tab-content mt-0 mb-0">
+      <Projects />
+    </SectionContainer>
+    <SectionContainer id="articles" class="tab-content hidden mt-0 mb-0">
+      <Articles />
+    </SectionContainer>
+    <SectionContainer id="booksMarks" class="tab-content hidden mt-0 mb-0">
+      <BooksMarks />
+    </SectionContainer>
+    <SectionContainer id="educationHub" class="tab-content hidden mt-0 mb-0">
+      <EducationHub />
+    </SectionContainer>
+    <SectionContainer id="funHobbies" class="tab-content hidden mt-0 mb-0">
+      <FunHobbies />
+    </SectionContainer>
+    <SectionContainer id="shopNow" class="tab-content hidden mt-0 mb-0">
+      <ShopNow />
+    </SectionContainer>
+  </main>
+</div>
+
+<script>
+  const buttons = document.querySelectorAll(".tab-btn");
+  const contents = document.querySelectorAll(".tab-content");
+
+  const defaultActive = document.querySelector('[data-target="projects"]');
+  if (defaultActive) {
+    defaultActive.classList.add(
+      "bg-hub-background",
+      "drop-shadow-md",
+      "text-hub-title",
+      "font-bold",
+      "dark:text-hub-title-dark",
+      "dark:bg-hub-background-dark",
+    );
+    const projectsSection = document.getElementById("projects");
+    if (projectsSection) {
+      projectsSection.classList.remove("hidden");
+    }
+  }
+
+  buttons.forEach((button) => {
+    button.addEventListener("click", () => {
+      const target = button.getAttribute("data-target");
+
+      buttons.forEach((btn) =>
+        btn.classList.remove(
+          "bg-hub-background",
+          "drop-shadow-md",
+          "text-hub-title",
+          "font-bold",
+          "dark:text-hub-title-dark",
+          "dark:bg-hub-background-dark",
+        ),
+      );
+      button.classList.add(
+        "bg-hub-background",
+        "drop-shadow-md",
+        "text-hub-title",
+        "font-bold",
+        "dark:text-hub-title-dark",
+        "dark:bg-hub-background-dark",
+      );
+
+      contents.forEach((content) => content.classList.add("hidden"));
+
+      if (target) {
+        const targetElement = document.getElementById(target);
+        if (targetElement) {
+          targetElement.classList.remove("hidden");
+        }
+      }
+
+      button.scrollIntoView({
+        behavior: "smooth",
+        block: "nearest",
+        inline: "center",
+      });
+    });
+  });
+</script>

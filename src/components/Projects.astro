@@ -1,0 +1,30 @@
+---
+import Card from "../components/Card.astro";
+import { cardsData } from "../data/projects.js";
+import NoDataCard from "../components/NoDataCard.astro";
+---
+
+<div class="flex flex-col gap-y-3">
+  {
+    cardsData.length > 0 ? (
+      cardsData.map((card) => (
+        <Card
+          id={card.id}
+          url={card.url}
+          href={card.href}
+          title={card.title}
+          isNew={card.isNew}
+          subtitle={card.subtitle}
+          imageSrc={card.imageSrc}
+          imageAlt={card.imageAlt}
+        />
+      ))
+    ) : (
+      <NoDataCard
+        message="Oops, no projects to display."
+        subtitle="But don't worry, there's always something interesting waiting for you!"
+        imageSrc="/img/notion/white/my-notion-face-transparent_9.png"
+      />
+    )
+  }
+</div>

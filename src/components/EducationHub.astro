@@ -1,0 +1,29 @@
+---
+import CardDocuments from "../components/CardDocuments.astro";
+import NoDataCard from "../components/NoDataCard.astro";
+import { cardsData } from "../data/educationhub.js";
+---
+
+<div class="flex flex-col-reverse gap-y-3">
+  {
+    cardsData.length > 0 ? (
+      cardsData.map((card) => (
+        <CardDocuments
+          id={card.id}
+          url={card.url}
+          href={card.href}
+          title={card.title}
+          subtitle={card.subtitle}
+          imageSrc={card.imageSrc}
+          imageAlt={card.imageAlt}
+        />
+      ))
+    ) : (
+      <NoDataCard
+        message="Oops, there are no educational resources to display."
+        subtitle="But don't worry, there's always something interesting waiting for you!"
+        imageSrc="/img/notion/white/my-notion-face-transparent_8.png"
+      />
+    )
+  }
+</div>

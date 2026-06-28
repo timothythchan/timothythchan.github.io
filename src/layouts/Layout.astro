@@ -1,0 +1,79 @@
+---
+interface Props {
+  title: string;
+  description: string;
+}
+
+import "../styles/global.css";
+
+const { title, description } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content={description} />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content="/favicon.svg" />
+    <meta property="og:url" content="https://timothythchan.github.io/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content="/favicon.svg" />
+    <title>{title}</title>
+  </head>
+  <body
+    class="bg-hub-background dark:bg-hub-background-dark md:flex md:justify-center"
+  >
+    <slot />
+  </body>
+</html>
+
+<script>
+  const themeToggle = document.getElementById("toggle-theme");
+  const htmlElement = document.documentElement;
+  const storageKey = "theme";
+
+  function applyTheme(theme: string) {
+    if (theme === "dark") {
+      htmlElement.classList.add("dark");
+      localStorage.setItem(storageKey, "dark");
+    } else {
+      htmlElement.classList.remove("dark");
+      localStorage.setItem(storageKey, "light");
+    }
+  }
+
+  const savedTheme = localStorage.getItem(storageKey);
+  if (savedTheme) {
+    applyTheme(savedTheme);
+  } else {
+    const preferredTheme = window.matchMedia("(prefers-color-scheme: dark)")
+      .matches
+      ? "dark"
+      : "light";
+    applyTheme(preferredTheme);
+  }
+
+  window
+    .matchMedia("(prefers-color-scheme: dark)")
+    .addEventListener("change", (event) => {
+      if (!localStorage.getItem(storageKey)) {
+        applyTheme(event.matches ? "dark" : "light");
+      }
+    });
+
+  if (themeToggle) {
+    themeToggle.addEventListener("click", () => {
+      const newTheme = htmlElement.classList.contains("dark")
+        ? "light"
+        : "dark";
+      applyTheme(newTheme);
+    });
+  }
+</script>

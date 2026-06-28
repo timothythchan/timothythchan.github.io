@@ -1,0 +1,30 @@
+---
+import IconMoon from "../../icons/IconMoon.astro";
+import IconSun from "../../icons/IconSun.astro";
+import HeroButton from "../HeroButton.astro";
+import { homeContent, siteConfig } from "@/config/content";
+---
+
+<div>
+  <div class="flex justify-between">
+    <img
+      class="rounded-full size-24 border border-hub-border dark:border-hub-border-dark dark:bg-hub-background-nav-dark hover:dark:bg-hub-background-nav object-cover"
+      src="/favicon.svg"
+      alt={siteConfig.name}
+    />
+    <div class="flex gap-2 flex-wrap">
+      <HeroButton aria-label="btn-theme" id="toggle-theme" class="size-8">
+        <IconSun class="size-5 dark:hidden" />
+        <IconMoon class="size-5 hidden dark:inline" />
+      </HeroButton>
+    </div>
+  </div>
+  <div class="mt-4">
+    <h1 class="font-medium text-2xl text-hub-title dark:text-hub-title-dark">
+      {homeContent.title}
+    </h1>
+    <p class="text-base text-hub-subtitle dark:text-hub-subtitle-dark">
+      Mathematician & AI Engineer
+    </p>
+  </div>
+</div>

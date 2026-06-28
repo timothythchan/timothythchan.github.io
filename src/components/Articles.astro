@@ -1,0 +1,41 @@
+---
+import CardDocuments from "../components/CardDocuments.astro";
+import NoDataCard from "../components/NoDataCard.astro";
+import { getAllPosts } from "@/utils/getPosts";
+
+const cardsData = getAllPosts().map((post) => ({
+  id: post.slug,
+  url: post.date,
+  href: post.href,
+  title: post.title,
+  subtitle: post.description,
+  imageSrc: post.image,
+  imageAlt: post.title,
+  external: false,
+}));
+---
+
+<div class="flex flex-col gap-y-3">
+  {
+    cardsData.length > 0 ? (
+      cardsData.map((card) => (
+        <CardDocuments
+          id={card.id}
+          url={card.url}
+          href={card.href}
+          title={card.title}
+          subtitle={card.subtitle}
+          imageSrc={card.imageSrc}
+          imageAlt={card.imageAlt}
+          external={card.external}
+        />
+      ))
+    ) : (
+      <NoDataCard
+        message="Oops, there are no articles to display."
+        subtitle="But don't worry, there's always something interesting waiting for you!"
+        imageSrc="/img/notion/white/my-notion-face-transparent_8.png"
+      />
+    )
+  }
+</div>
