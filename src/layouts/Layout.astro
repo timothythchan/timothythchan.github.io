@@ -34,12 +34,12 @@ const { title, description } = Astro.props;
   </body>
 </html>
 
-<script>
+<script is:inline>
   const themeToggle = document.getElementById("toggle-theme");
   const htmlElement = document.documentElement;
   const storageKey = "theme";
 
-  function applyTheme(theme: string) {
+  function applyTheme(theme) {
     if (theme === "dark") {
       htmlElement.classList.add("dark");
       localStorage.setItem(storageKey, "dark");

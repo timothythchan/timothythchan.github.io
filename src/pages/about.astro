@@ -2,13 +2,17 @@
 import Layout from "@/layouts/Layout.astro";
 import Hero from "@/components/index/Hero.astro";
 import SectionContainer from "@/components/SectionContainer.astro";
+import PageControls from "@/components/PageControls.astro";
 import { aboutContent } from "@/config/content";
 ---
 
 <Layout title={aboutContent.meta.title} description={aboutContent.meta.description}>
   <main class="mx-6 mt-4 md:max-w-[1000px] md:w-full pb-12">
+    <div class="flex justify-end mb-4">
+      <PageControls />
+    </div>
     <SectionContainer class="flex flex-col gap-y-6">
-      <Hero />
+      <Hero showControls={false} />
     </SectionContainer>
 
     <SectionContainer>
@@ -72,13 +76,6 @@ import { aboutContent } from "@/config/content";
             </a>.
           </p>
         </div>
-
-        <a
-          href="/"
-          class="inline-flex items-center gap-2 text-sm text-hub-subtitle dark:text-hub-subtitle-dark hover:text-hub-title dark:hover:text-hub-title-dark transition-colors"
-        >
-          ← Back to hub
-        </a>
       </div>
     </SectionContainer>
   </main>

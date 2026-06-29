@@ -1,0 +1,16 @@
+---
+import IconHome from "@/icons/IconHome.astro";
+import IconMoon from "@/icons/IconMoon.astro";
+import IconSun from "@/icons/IconSun.astro";
+import HeroIconButton from "@/components/HeroIconButton.astro";
+---
+
+<div class="flex items-center gap-2">
+  <HeroIconButton href="/" aria-label="Go to home">
+    <IconHome class="size-4" />
+  </HeroIconButton>
+  <HeroIconButton aria-label="Toggle theme" id="toggle-theme">
+    <IconSun class="size-4 dark:hidden" />
+    <IconMoon class="size-4 hidden dark:inline" />
+  </HeroIconButton>
+</div>

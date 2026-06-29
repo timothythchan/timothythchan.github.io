@@ -1,0 +1,12 @@
+---
+const { class: className = "", href, ...rest } = Astro.props;
+const isLink = Boolean(href);
+
+const baseClass = `shrink-0 text-hub-inactive hover:text-hub-title rounded-full border border-hub-border dark:border-hub-border-dark size-9 flex items-center justify-center hover:drop-shadow-md hover:bg-hub-background-nav hover:dark:bg-hub-surface-hover-dark dark:text-hub-inactive-dark dark:hover:text-hub-title-dark transition-colors ${className}`;
+
+const Tag = isLink ? "a" : "button";
+---
+
+<Tag class={baseClass} href={href} {...rest}>
+  <slot />
+</Tag>

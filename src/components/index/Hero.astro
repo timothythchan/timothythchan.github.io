@@ -1,31 +1,22 @@
 ---
-import IconHome from "../../icons/IconHome.astro";
-import IconMoon from "../../icons/IconMoon.astro";
-import IconSun from "../../icons/IconSun.astro";
-import HeroButton from "../HeroButton.astro";
+import PageControls from "@/components/PageControls.astro";
 import { homeContent, siteConfig } from "@/config/content";
+
+interface Props {
+  showControls?: boolean;
+}
+
+const { showControls = true } = Astro.props;
 ---
 
 <div>
-  <div class="flex justify-between">
+  <div class="flex justify-between items-start gap-4">
     <img
-      class="rounded-full size-24 border border-hub-border dark:border-hub-border-dark dark:bg-hub-surface-dark hover:dark:bg-hub-surface-hover-dark object-cover transition-colors"
+      class="rounded-full size-24 border border-hub-border dark:border-hub-border-dark dark:bg-hub-surface-dark hover:dark:bg-hub-surface-hover-dark object-cover transition-colors shrink-0"
       src={siteConfig.profileImage}
       alt={siteConfig.name}
     />
-    <div class="flex gap-2 flex-wrap">
-      <a
-        href="/"
-        aria-label="Go to home"
-        class="size-8 text-hub-inactive hover:text-hub-title rounded-full border-[1px] flex items-center justify-center border-hub-border dark:border-hub-border-dark hover:drop-shadow-md hover:bg-hub-background-nav hover:dark:bg-hub-surface-hover-dark dark:text-hub-inactive-dark dark:hover:text-hub-title-dark transition-colors"
-      >
-        <IconHome class="size-5" />
-      </a>
-      <HeroButton aria-label="btn-theme" id="toggle-theme" class="size-8">
-        <IconSun class="size-5 dark:hidden" />
-        <IconMoon class="size-5 hidden dark:inline" />
-      </HeroButton>
-    </div>
+    {showControls && <PageControls />}
   </div>
   <div class="mt-4">
     <h1 class="font-medium text-2xl text-hub-title dark:text-hub-title-dark">
