@@ -1,4 +1,5 @@
 ---
+import IconHome from "../../icons/IconHome.astro";
 import IconMoon from "../../icons/IconMoon.astro";
 import IconSun from "../../icons/IconSun.astro";
 import HeroButton from "../HeroButton.astro";
@@ -13,6 +14,13 @@ import { homeContent, siteConfig } from "@/config/content";
       alt={siteConfig.name}
     />
     <div class="flex gap-2 flex-wrap">
+      <a
+        href="/"
+        aria-label="Go to home"
+        class="size-8 text-hub-inactive hover:text-hub-title rounded-full border-[1px] flex items-center justify-center border-hub-border dark:border-hub-border-dark hover:drop-shadow-md hover:bg-hub-background-nav hover:dark:bg-hub-background-nav-dark dark:text-hub-inactive dark:hover:text-white"
+      >
+        <IconHome class="size-5" />
+      </a>
       <HeroButton aria-label="btn-theme" id="toggle-theme" class="size-8">
         <IconSun class="size-5 dark:hidden" />
         <IconMoon class="size-5 hidden dark:inline" />
