@@ -9,7 +9,7 @@ import { homeContent, siteConfig } from "@/config/content";
   <div class="flex justify-between">
     <img
       class="rounded-full size-24 border border-hub-border dark:border-hub-border-dark dark:bg-hub-background-nav-dark hover:dark:bg-hub-background-nav object-cover"
-      src="/favicon.svg"
+      src={siteConfig.profileImage}
       alt={siteConfig.name}
     />
     <div class="flex gap-2 flex-wrap">
@@ -24,7 +24,7 @@ import { homeContent, siteConfig } from "@/config/content";
       {homeContent.title}
     </h1>
     <p class="text-base text-hub-subtitle dark:text-hub-subtitle-dark">
-      Mathematician & AI Engineer
+      {homeContent.subtitle}
     </p>
   </div>
 </div>

@@ -1,6 +1,7 @@
 ---
 import ArrowUpRight from "../../icons/ArrowUpRight.astro";
 import GitHub from "../../icons/GitHub.astro";
+import LinkedIn from "../../icons/LinkedIn.astro";
 import SocialPill from "../../icons/SocialPill.astro";
 import { siteConfig } from "@/config/content";
 import Tooltip from "../Tooltip.astro";
@@ -21,6 +22,11 @@ import Tooltip from "../Tooltip.astro";
     <Tooltip tooltip="GitHub">
       <SocialPill href={siteConfig.social.github} class="" target="_blank">
         <GitHub class="size-4" />
+      </SocialPill>
+    </Tooltip>
+    <Tooltip tooltip="LinkedIn">
+      <SocialPill href={siteConfig.social.linkedin} class="" target="_blank">
+        <LinkedIn class="size-4" />
       </SocialPill>
     </Tooltip>
     <Tooltip tooltip="Email">

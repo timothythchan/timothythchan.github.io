@@ -1,17 +1,19 @@
 export const siteConfig = {
   name: "Timothy Chan",
-  title: "Timothy Chan — Mathematician & AI Engineer",
-  description: "Personal website of Timothy Chan — mathematician, AI engineer, and researcher",
+  title: "Timothy Chan — Columbia Statistics | Quantitative Research and Trading | Machine Learning System Engineer",
+  description: "Personal website of Timothy Chan — Columbia Statistics, quantitative research and trading, and machine learning system engineering",
   social: {
     github: "https://github.com/timothythchan",
-    email: "mailto:hello@timothychan.dev",
+    linkedin: "https://linkedin.com/in/timothythchan/",
+    email: "mailto:timothy.chan@stern.nyu.edu",
   },
+  profileImage: "/assets/images/profile.jpg",
 };
 
 export const homeContent = {
-  title: "Hello, I'm Timothy Chan",
-  description:
-    "A mathematician and AI engineer passionate about bridging rigorous mathematical theory with modern machine learning. I build models, design experiments, and write about the intersection of mathematics and artificial intelligence.",
+  title: "Timothy Chan",
+  subtitle:
+    "Columbia Statistics | Quantitative Research and Trading | Machine Learning System Engineer",
   buttons: {
     about: {
       text: "View About",
@@ -82,7 +84,7 @@ export const aboutContent = {
       "Feel free to reach out if you want to collaborate on research, discuss mathematics and AI, or just say hi! You can find me on GitHub or drop me an",
     email: {
       text: "email",
-      href: "mailto:hello@timothychan.dev",
+      href: "mailto:timothy.chan@stern.nyu.edu",
     },
   },
 };
