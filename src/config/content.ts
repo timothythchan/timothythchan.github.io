@@ -1,19 +1,19 @@
 export const siteConfig = {
   name: "Timothy Chan",
-  title: "Timothy Chan — Columbia Statistics | Quantitative Research and Trading | Machine Learning System Engineer",
-  description: "Personal website of Timothy Chan — Columbia Statistics, quantitative research and trading, and machine learning system engineering",
+  title: "Timothy Chan — Columbia Statistics | Quantitative Research and Trading | ML/AI System Engineering",
+  description: "Personal website of Timothy Chan — Columbia Statistics, quantitative research and trading, and ML/AI system engineering",
   social: {
     github: "https://github.com/timothythchan",
     linkedin: "https://linkedin.com/in/timothythchan/",
     email: "mailto:timothy.chan@stern.nyu.edu",
   },
-  profileImage: "/assets/images/profile.jpg",
+  profileImage: "/assets/images/profile.png",
 };
 
 export const homeContent = {
   title: "Timothy Chan",
   subtitle:
-    "Columbia Statistics | Quantitative Research and Trading | Machine Learning System Engineer",
+    "Columbia Statistics | Quantitative Research and Trading | ML/AI System Engineering",
   buttons: {
     about: {
       text: "View About",
