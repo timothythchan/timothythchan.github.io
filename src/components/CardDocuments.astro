@@ -17,15 +17,16 @@ const {
   class="rounded-lg flex items-stretch gap-4 border-[1px]
   border-hub-border
   dark:border-hub-border-dark
+  dark:bg-hub-surface-dark
   hover:drop-shadow-md
   hover:bg-hub-background-nav
-   dark:bg-hub-background-nav-dark
-   hover:dark:bg-hub-background-dark group"
+  hover:dark:bg-hub-surface-hover-dark
+  transition-colors group"
   target={external ? "_blank" : "_self"}
   rel={external ? "noopener noreferrer" : undefined}
 >
   <div
-    class="w-[92px] aspect-square rounded-l-lg overflow-hidden flex-shrink-0 border-hub-border dark:border-hub-border-dark dark:bg-hub-background"
+    class="w-[92px] aspect-square rounded-l-lg overflow-hidden flex-shrink-0 border-r border-hub-border dark:border-hub-border-dark bg-white dark:bg-hub-background-nav-dark"
   >
     <img src={imageSrc} alt={imageAlt} class="w-full h-full object-cover" />
   </div>
@@ -35,7 +36,7 @@ const {
       <h2 class="text-sm text-hub-title dark:text-hub-title-dark text-wrap">
         {title}
       </h2>
-      <h3 class="text-slate-700/90 dark:text-hub-subtitle-dark text-xs">
+      <h3 class="text-hub-subtitle dark:text-hub-subtitle-dark text-xs">
         {subtitle}
       </h3>
     </div>

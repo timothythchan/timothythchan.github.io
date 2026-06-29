@@ -9,7 +9,7 @@ import UsefulTools from "./UsefulTools.astro";
 
 <div class="flex flex-col">
   <nav
-    class="flex gap-1 text-hub-inactive rounded-full border-[1px] p-[2px] border-hub-border dark:border-hub-border-dark bg-hub-background-nav dark:bg-hub-background-nav whitespace-nowrap overflow-x-auto scrollbar-hide"
+    class="flex gap-1 text-hub-inactive dark:text-hub-inactive-dark rounded-full border-[1px] p-[2px] border-hub-border dark:border-hub-border-dark bg-hub-background-nav dark:bg-hub-background-nav-dark whitespace-nowrap overflow-x-auto scrollbar-hide"
   >
     <NavButton class="tab-btn" aria-label="btn-projects" data-target="projects"
       >Work in Progress</NavButton
@@ -57,7 +57,7 @@ import UsefulTools from "./UsefulTools.astro";
       "text-hub-title",
       "font-bold",
       "dark:text-hub-title-dark",
-      "dark:bg-hub-background-dark",
+      "dark:bg-hub-surface-hover-dark",
     );
     const projectsSection = document.getElementById("projects");
     if (projectsSection) {
@@ -76,7 +76,7 @@ import UsefulTools from "./UsefulTools.astro";
           "text-hub-title",
           "font-bold",
           "dark:text-hub-title-dark",
-          "dark:bg-hub-background-dark",
+          "dark:bg-hub-surface-hover-dark",
         ),
       );
       button.classList.add(
@@ -85,7 +85,7 @@ import UsefulTools from "./UsefulTools.astro";
         "text-hub-title",
         "font-bold",
         "dark:text-hub-title-dark",
-        "dark:bg-hub-background-dark",
+        "dark:bg-hub-surface-hover-dark",
       );
 
       contents.forEach((content) => content.classList.add("hidden"));

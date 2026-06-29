@@ -9,7 +9,7 @@ import { homeContent, siteConfig } from "@/config/content";
 <div>
   <div class="flex justify-between">
     <img
-      class="rounded-full size-24 border border-hub-border dark:border-hub-border-dark dark:bg-hub-background-nav-dark hover:dark:bg-hub-background-nav object-cover"
+      class="rounded-full size-24 border border-hub-border dark:border-hub-border-dark dark:bg-hub-surface-dark hover:dark:bg-hub-surface-hover-dark object-cover transition-colors"
       src={siteConfig.profileImage}
       alt={siteConfig.name}
     />
@@ -17,7 +17,7 @@ import { homeContent, siteConfig } from "@/config/content";
       <a
         href="/"
         aria-label="Go to home"
-        class="size-8 text-hub-inactive hover:text-hub-title rounded-full border-[1px] flex items-center justify-center border-hub-border dark:border-hub-border-dark hover:drop-shadow-md hover:bg-hub-background-nav hover:dark:bg-hub-background-nav-dark dark:text-hub-inactive dark:hover:text-white"
+        class="size-8 text-hub-inactive hover:text-hub-title rounded-full border-[1px] flex items-center justify-center border-hub-border dark:border-hub-border-dark hover:drop-shadow-md hover:bg-hub-background-nav hover:dark:bg-hub-surface-hover-dark dark:text-hub-inactive-dark dark:hover:text-hub-title-dark transition-colors"
       >
         <IconHome class="size-5" />
       </a>
