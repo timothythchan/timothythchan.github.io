@@ -1,9 +1,9 @@
 ---
+import EmptyStateVisual from "./EmptyStateVisual.astro";
+
 const {
   message = "Oops, no data to display.",
   subtitle = "But don't worry, there's always something interesting waiting for you!",
-  imageSrc = "/img/notion/white/my-notion-face-transparent.png",
-  imageAlt = "No data available",
 } = Astro.props;
 ---
 
@@ -17,7 +17,7 @@ const {
    hover:dark:bg-hub-surface-hover-dark
    transition-colors py-6 px-4 text-center"
 >
-  <img src={imageSrc} alt={imageAlt} class="w-24 h-24 object-contain" />
+  <EmptyStateVisual />
 
   <p class="text-sm text-hub-title dark:text-hub-title-dark font-medium">
     {message}
