@@ -103,9 +103,9 @@ export const aboutContent = {
     ],
   },
   connect: {
-    title: "Open to collaboration around AI research and product development",
+    title: "Open to collaboration",
     description:
-      "Feel free to reach out if you want to collaborate to build something. Job opportunities are also welcomed. Just message me through LinkedIn or drop me an",
+      "Feel free to reach out if you want to collaborate and build something. Job opportunities are also welcomed. Just message me through LinkedIn or drop me an",
     email: {
       text: "email",
       href: "mailto:timothy.chan@stern.nyu.edu",
