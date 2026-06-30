@@ -63,6 +63,32 @@ import { aboutContent } from "@/config/content";
         </div>
 
         <div>
+          <h3 class="font-medium text-lg text-hub-title dark:text-hub-title-dark mb-4">
+            {aboutContent.education.title}
+          </h3>
+          <div class="flex flex-col gap-6">
+            {
+              aboutContent.education.items.map((item) => (
+                <div class="rounded-lg border border-hub-border dark:border-hub-border-dark p-4 bg-hub-background-nav dark:bg-hub-background-nav-dark">
+                  <p class="text-xs uppercase tracking-widest text-hub-subtitle dark:text-hub-subtitle-dark">
+                    {item.period}
+                  </p>
+                  <h4 class="font-medium text-hub-title dark:text-hub-title-dark mt-1">
+                    {item.degree}
+                  </h4>
+                  <p class="text-sm text-hub-subtitle dark:text-hub-subtitle-dark">
+                    {item.school}
+                  </p>
+                  <p class="text-sm text-hub-subtitle dark:text-hub-subtitle-dark mt-2">
+                    {item.description}
+                  </p>
+                </div>
+              ))
+            }
+          </div>
+        </div>
+
+        <div>
           <h3 class="font-medium text-lg text-hub-title dark:text-hub-title-dark mb-3">
             {aboutContent.connect.title}
           </h3>

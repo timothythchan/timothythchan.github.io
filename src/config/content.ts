@@ -76,6 +76,32 @@ export const aboutContent = {
       },
     ],
   },
+  education: {
+    title: "Education",
+    items: [
+      {
+        period: "2025-2026",
+        degree: "Master of Arts in Statistics",
+        school: "Columbia University",
+        description:
+          "machine learning, statistical and mathematical finance, AI systems, pricing and modelling of financial instruments, algorithmic trading",
+      },
+      {
+        period: "2024",
+        degree: "Master of Arts in Political Economy (Withdrawn)",
+        school: "New York University",
+        description:
+          "graduate level mathematics, withdrawn due to admission to Columbia",
+      },
+      {
+        period: "2019-2023",
+        degree: "Bachelor of Arts in Political Science and Chinese Literature",
+        school: "University of Hong Kong",
+        description:
+          "game theory, quantitative research method, introductory statistics.",
+      },
+    ],
+  },
   connect: {
     title: "Let's Connect",
     description:
