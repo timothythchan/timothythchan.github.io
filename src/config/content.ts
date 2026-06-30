@@ -84,14 +84,14 @@ export const aboutContent = {
         degree: "Master of Arts in Statistics",
         school: "Columbia University",
         description:
-          "machine learning, statistical and mathematical finance, AI systems, pricing and modelling of financial instruments, algorithmic trading",
+          "Machine learning, statistical and mathematical finance, data engineering, AI systems, pricing and modelling of financial instruments, algorithmic trading.",
       },
       {
         period: "2024",
         degree: "Master of Arts in Political Economy (Withdrawn)",
         school: "New York University",
         description:
-          "graduate level mathematics, withdrawn due to admission to Columbia",
+          "Graduate level mathematics, withdrawn due to admission to Columbia.",
       },
       {
         period: "2019-2023",
