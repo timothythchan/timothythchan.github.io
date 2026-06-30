@@ -3,7 +3,7 @@ import Layout from "@/layouts/Layout.astro";
 import Hero from "@/components/index/Hero.astro";
 import SectionContainer from "@/components/SectionContainer.astro";
 import PageControls from "@/components/PageControls.astro";
-import { aboutContent } from "@/config/content";
+import { aboutContent, siteConfig } from "@/config/content";
 ---
 
 <Layout title={aboutContent.meta.title} description={aboutContent.meta.description}>
@@ -93,7 +93,16 @@ import { aboutContent } from "@/config/content";
             {aboutContent.connect.title}
           </h3>
           <p class="text-sm text-hub-subtitle dark:text-hub-subtitle-dark">
-            {aboutContent.connect.description}
+            {aboutContent.connect.description}{" "}
+            <a
+              href={siteConfig.social.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="text-sky-500 hover:text-sky-400 underline"
+            >
+              LinkedIn
+            </a>
+            {" "}or{" "}
             <a
               href={aboutContent.connect.email.href}
               class="text-sky-500 hover:text-sky-400 underline"
