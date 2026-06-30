@@ -37,7 +37,7 @@ export const aboutContent = {
   },
   title: "About Me",
   description:
-    "Bred in Literature and Social Science, trained in Applied Mathematics. Giving scientific research and innovation a touch of aestheticism and craftsmanship, as the best algorithms require as much intuition as they do calculation. Mostly working on quantitative research and developing algorithms and ML/AI systems, but can also be seen on tennis courts and golf courses and occasionally in sports analytics. Skills before passion, work before love.",
+    "Bred in Literature and Social Science, trained in Applied Mathematics. With the best of both worlds I give scientific research and innovation a touch of aestheticism and craftsmanship, as the best algorithms require as much intuition as they do calculation. Mostly working on quantitative research and developing algorithms and ML/AI systems, but can also be seen on tennis courts and golf courses and occasionally in sports analytics. Skills before passion, work before love.",
   skills: [
     "Mathematical and Statistical Modelling",
     "ML/AI Engineering",
