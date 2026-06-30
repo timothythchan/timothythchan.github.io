@@ -37,16 +37,14 @@ export const aboutContent = {
   },
   title: "About Me",
   description:
-    "I'm a mathematician and AI engineer with a deep interest in applying mathematical modelling and statistical analysis to real-world problems. My work spans from developing neural network architectures to building production ML pipelines, always grounded in solid mathematical foundations.",
+    "Bred in Literature and Social Science, trained in Applied Mathematics. Giving scientific research and innovation a touch of aestheticism and craftsmanship, as the best algorithms require as much intuition as they do calculation. Mostly working on quantitative research and developing algorithms and ML/AI systems, but can also be seen on tennis courts and golf courses and occasionally in sports analytics. Skills before passion, work before love.",
   skills: [
-    "Python",
-    "PyTorch",
-    "Mathematical Modelling",
-    "Statistical Analysis",
-    "TypeScript",
-    "Docker",
-    "Git",
+    "Mathematical and Statistical Modelling",
+    "ML/AI Engineering",
+    "Algorithm Design",
     "Linux",
+    "Python",
+    "C++",
   ],
   image: {
     src: "/assets/images/about/coder.jpg",
