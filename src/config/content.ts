@@ -98,14 +98,14 @@ export const aboutContent = {
         degree: "Bachelor of Arts in Political Science and Chinese Literature",
         school: "University of Hong Kong",
         description:
-          "game theory, quantitative research method, introductory statistics.",
+          "Game theory, quantitative research method, introductory statistics.",
       },
     ],
   },
   connect: {
-    title: "Let's Connect",
+    title: "Open to collaboration around AI research and product development",
     description:
-      "Feel free to reach out if you want to collaborate on research, discuss mathematics and AI, or just say hi! You can find me on GitHub or drop me an",
+      "Feel free to reach out if you want to collaborate to build something. Job opportunities are also welcomed. Just message me through LinkedIn or drop me an",
     email: {
       text: "email",
       href: "mailto:timothy.chan@stern.nyu.edu",
