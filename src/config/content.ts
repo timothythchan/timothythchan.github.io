@@ -54,25 +54,31 @@ export const aboutContent = {
     title: "Experience",
     items: [
       {
-        period: "2024 - Present",
-        position: "AI Research Engineer",
-        company: "Independent Research",
+        period: "Jan 2026 - Present",
+        position: "Quantitative Research Engineer",
+        company: "Convolvere",
         description:
-          "Conducting independent research at the intersection of mathematics and deep learning. Building and evaluating novel model architectures.",
+          "Algorithm design, data and system engineering, foundational model training, AI infrastructure development.",
       },
       {
-        period: "2022 - 2024",
-        position: "Machine Learning Engineer",
-        company: "AI Research Lab",
+        period: "Mar 2025 - Jul 2025",
+        position: "Alpha Researcher",
+        company: "WorldQuant (BRAIN Platform)",
         description:
-          "Designed and deployed machine learning models for production systems. Developed data pipelines and model training infrastructure.",
+          "Remote consultant for factor modeling and alpha research in US equities and derivatives.",
       },
       {
-        period: "2020 - 2022",
-        position: "Research Assistant",
-        company: "University Mathematics Department",
+        period: "Jan 2023 - May 2023",
+        position: "Student Research Assistant",
+        company: "University of Hong Kong",
         description:
-          "Applied mathematical modelling and statistical methods to research problems. Published findings in peer-reviewed venues.",
+          "Game-theoretical behavioral research, agent-based learning.",
+      },
+      {
+        period: "June 2022 - Aug 2022",
+        position: "Machine Learning Research Intern",
+        company: "University of Alberta",
+        description: "Data engineering, natural language processing.",
       },
     ],
   },
