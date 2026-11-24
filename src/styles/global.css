@@ -1,22 +1,39 @@
-.scrollbar-hide {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
+@import "tailwindcss";
+@import "./theme.css";
+@import "./typography.css";
+@import "rehype-callouts/theme/obsidian";
+
+@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
+
+@layer base {
+  * {
+    @apply border-border outline-accent/75;
+    scrollbar-width: auto;
+    scrollbar-color: var(--color-muted) transparent;
+  }
+  a,
+  button,
+  #main-content {
+    @apply outline-accent outline-offset-1 focus-visible:no-underline focus-visible:outline-2 focus-visible:outline-dashed;
+  }
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
 }
 
-.scrollbar-hide::-webkit-scrollbar {
-  display: none;
+@utility max-w-app {
+  @apply max-w-3xl;
 }
 
-html {
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@utility app-layout {
+  @apply max-w-app mx-auto w-full px-4;
 }
 
-body {
-  color: #111111;
-  transition: background-color 0.2s ease, color 0.2s ease;
+@utility active-nav {
+  @apply underline decoration-wavy decoration-2 underline-offset-8;
 }
 
-html.dark body {
-  color: #fafafa;
+:target {
+  scroll-margin-block: 1rem;
 }
