@@ -1,117 +1,36 @@
 ---
+import { getEntry, render } from "astro:content";
 import Layout from "@/layouts/Layout.astro";
-import Hero from "@/components/index/Hero.astro";
-import SectionContainer from "@/components/SectionContainer.astro";
-import PageControls from "@/components/PageControls.astro";
-import { aboutContent, siteConfig } from "@/config/content";
+import Header from "@/components/Header.astro";
+import Breadcrumb from "@/components/Breadcrumb.astro";
+import Main from "@/components/Main.astro";
+import Footer from "@/components/Footer.astro";
+import config from "@/config";
+
+const about = await getEntry("pages", "about");
+
+if (!about) {
+  throw new Error(
+    "Missing content entry: `about.md` or `about.mdx` in `src/content/pages/`"
+  );
+}
+
+const { Content } = await render(about);
 ---
 
-<Layout title={aboutContent.meta.title} description={aboutContent.meta.description}>
-  <main class="mx-6 mt-4 md:max-w-[1000px] md:w-full pb-12">
-    <div class="flex justify-end mb-4">
-      <PageControls />
-    </div>
-    <SectionContainer class="flex flex-col gap-y-6">
-      <Hero showControls={false} />
-    </SectionContainer>
+<Layout
+  title={`${about.data.title} | ${config.site.title}`}
+  description={about.data.description}
+  ogImage={about.data.ogImage}
+  canonicalURL={about.data.canonicalURL}
+>
+  <Header />
 
-    <SectionContainer>
-      <div class="flex flex-col gap-8">
-        <div>
-          <h2 class="font-medium text-xl text-hub-title dark:text-hub-title-dark mb-3">
-            {aboutContent.title}
-          </h2>
-          <p class="text-sm text-hub-subtitle dark:text-hub-subtitle-dark leading-relaxed">
-            {aboutContent.description}
-          </p>
-        </div>
+  <Breadcrumb />
 
-        <div class="flex flex-wrap gap-2">
-          {
-            aboutContent.skills.map((skill) => (
-              <span class="px-3 py-1 text-xs rounded-full border border-hub-border dark:border-hub-border-dark text-hub-title dark:text-hub-title-dark bg-hub-background-nav dark:bg-hub-background-nav-dark">
-                {skill}
-              </span>
-            ))
-          }
-        </div>
+  <Main pageTitle={about.data.title} class="app-prose">
+    <Content />
+  </Main>
 
-        <div>
-          <h3 class="font-medium text-lg text-hub-title dark:text-hub-title-dark mb-4">
-            {aboutContent.experience.title}
-          </h3>
-          <div class="flex flex-col gap-6">
-            {
-              aboutContent.experience.items.map((item) => (
-                <div class="rounded-lg border border-hub-border dark:border-hub-border-dark p-4 bg-hub-background-nav dark:bg-hub-background-nav-dark">
-                  <p class="text-xs uppercase tracking-widest text-hub-subtitle dark:text-hub-subtitle-dark">
-                    {item.period}
-                  </p>
-                  <h4 class="font-medium text-hub-title dark:text-hub-title-dark mt-1">
-                    {item.position}
-                  </h4>
-                  <p class="text-sm text-hub-subtitle dark:text-hub-subtitle-dark">
-                    {item.company}
-                  </p>
-                  <p class="text-sm text-hub-subtitle dark:text-hub-subtitle-dark mt-2">
-                    {item.description}
-                  </p>
-                </div>
-              ))
-            }
-          </div>
-        </div>
-
-        <div>
-          <h3 class="font-medium text-lg text-hub-title dark:text-hub-title-dark mb-4">
-            {aboutContent.education.title}
-          </h3>
-          <div class="flex flex-col gap-6">
-            {
-              aboutContent.education.items.map((item) => (
-                <div class="rounded-lg border border-hub-border dark:border-hub-border-dark p-4 bg-hub-background-nav dark:bg-hub-background-nav-dark">
-                  <p class="text-xs uppercase tracking-widest text-hub-subtitle dark:text-hub-subtitle-dark">
-                    {item.period}
-                  </p>
-                  <h4 class="font-medium text-hub-title dark:text-hub-title-dark mt-1">
-                    {item.degree}
-                  </h4>
-                  <p class="text-sm text-hub-subtitle dark:text-hub-subtitle-dark">
-                    {item.school}
-                  </p>
-                  <p class="text-sm text-hub-subtitle dark:text-hub-subtitle-dark mt-2">
-                    {item.description}
-                  </p>
-                </div>
-              ))
-            }
-          </div>
-        </div>
-
-        <div>
-          <h3 class="font-medium text-lg text-hub-title dark:text-hub-title-dark mb-3">
-            {aboutContent.connect.title}
-          </h3>
-          <p class="text-sm text-hub-subtitle dark:text-hub-subtitle-dark">
-            {aboutContent.connect.description}{" "}
-            <a
-              href={siteConfig.social.linkedin}
-              target="_blank"
-              rel="noopener noreferrer"
-              class="text-sky-500 hover:text-sky-400 underline"
-            >
-              LinkedIn
-            </a>
-            {" "}or{" "}
-            <a
-              href={aboutContent.connect.email.href}
-              class="text-sky-500 hover:text-sky-400 underline"
-            >
-              {aboutContent.connect.email.text}
-            </a>.
-          </p>
-        </div>
-      </div>
-    </SectionContainer>
-  </main>
+  <Footer />
 </Layout>
