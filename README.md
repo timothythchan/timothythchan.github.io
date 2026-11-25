@@ -1,32 +1,34 @@
 # timothythchan.github.io
 
-Personal website of Timothy Chan, built with [Astro](https://astro.build/) and
-the [AstroPaper](https://github.com/satnaing/astro-paper) theme.
+Personal website of Timothy Chan, built with [Astro](https://astro.build/) and a
+customized [Growing Galaxy](https://github.com/OwenCedaric/GrowingGalaxy) theme
+(blog + projects; the gallery and traces sections were removed).
 
 ## Development
 
 ```bash
 npm install      # install dependencies
-npm run dev      # start the dev server at http://localhost:4321
-npm run build    # type-check, build, and generate the Pagefind search index
-npm run preview  # preview the production build locally
+npm run dev      # dev server at http://localhost:4321
+npm run check    # astro + TypeScript diagnostics
+npm run build    # production build + Pagefind search index
+npm run preview  # preview the production build
 ```
 
-Requires Node.js >= 22.23.4.
+Requires Node.js >= 22.22.0.
 
-## Configuration
+## Structure
 
-Site metadata, social links, and feature flags live in
-[`astro-paper.config.ts`](./astro-paper.config.ts). Pages are in `src/content/pages/`
-and blog posts in `src/content/posts/`.
+- `src/config.ts` — site metadata, navigation, socials, footer
+- `src/content/blog/` — blog posts (Markdown / MDX, KaTeX math supported)
+- `src/content/projects/` — project entries
+- `src/content/pages/about.md` — About page (also feeds the home page intro)
 
 ## Deployment
 
-Pushing to `main` triggers the GitHub Actions workflow in
-[`.github/workflows/deploy.yml`](./.github/workflows/deploy.yml), which builds the
-site and deploys it to GitHub Pages.
+Pushing to `main` triggers [`.github/workflows/deploy.yml`](./.github/workflows/deploy.yml),
+which builds the site and deploys it to GitHub Pages.
 
 ## Credits
 
-Theme: [AstroPaper](https://github.com/satnaing/astro-paper) by
-[Sat Naing](https://satna.ing), MIT licensed.
+Theme: [Growing Galaxy](https://github.com/OwenCedaric/GrowingGalaxy) by
+Owen Cedaric, MIT licensed.

@@ -1,35 +1,61 @@
 ---
 import Layout from "@/layouts/Layout.astro";
-import Header from "@/components/Header.astro";
-import Footer from "@/components/Footer.astro";
-import LinkButton from "@/components/LinkButton.astro";
-import { getRelativeLocaleUrl } from "astro:i18n";
-import { useTranslations } from "@/i18n";
-import config from "@/config";
-
-const locale = Astro.currentLocale ?? config.site.lang;
-const t = useTranslations(locale);
+import { SITE_CONFIG } from "@/config";
+import MotionWrapper from "@/components/ui/MotionWrapper";
+import TextReveal from "@/components/ui/TextReveal";
 ---
 
-<Layout title={`${t.notFound.title} | ${config.site.title}`}>
-  <Header />
-
-  <main
-    id="main-content"
-    class="app-layout my-1 flex flex-1 items-center justify-center"
-  >
-    <div class="mb-14 flex flex-col items-center justify-center">
-      <h1 class="text-accent text-9xl font-bold">404</h1>
-      <span aria-hidden="true"> ¯\_(ツ)_/¯ </span>
-      <p class="mt-4 text-2xl sm:text-3xl">{t.notFound.message}</p>
-      <LinkButton
-        href={getRelativeLocaleUrl(locale, "")}
-        class="my-6 text-lg underline decoration-dashed underline-offset-8"
-      >
-        {t.notFound.goHome}
-      </LinkButton>
+<Layout
+    title={`404 // ${SITE_CONFIG.title}`}
+    description="The page you're looking for doesn't exist."
+>
+    <!-- Background Watermark -->
+    <div
+        class="fixed top-0 right-0 h-screen z-[-10] select-none pointer-events-none overflow-hidden flex items-center justify-center"
+    >
+        <TextReveal
+            client:load
+            text="404"
+            type="char"
+            className="font-bold text-black/[0.03] dark:text-white/[0.15] text-[18vh] lg:text-[25vh] leading-none whitespace-nowrap"
+            style={{
+                writingMode:
+                    "vertical-rl",
+                textOrientation:
+                    "mixed",
+            }}
+        />
     </div>
-  </main>
 
-  <Footer />
+    <!-- Main Content -->
+    <section
+        class="w-full flex flex-col items-center justify-center text-center min-h-[60vh]"
+    >
+        <MotionWrapper
+            client:idle
+            delay={0.1}
+            className="w-full max-w-3xl px-6"
+        >
+            <!-- Heading -->
+            <h1
+                class="text-6xl md:text-8xl font-bold tracking-tighter mb-6 text-primary-text dark:text-primary-text-dark leading-tight"
+            >
+                Lost
+                in
+                Space
+            </h1>
+
+            <!-- Subtitle -->
+            <p
+                class="text-xl md:text-2xl text-secondary-text font-light italic"
+            >
+                The
+                page
+                you
+                seek
+                doesn't
+                exist
+            </p>
+        </MotionWrapper>
+    </section>
 </Layout>

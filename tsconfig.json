@@ -1,11 +1,21 @@
 {
-  "extends": "astro/tsconfigs/strict",
-  "include": [".astro/types.d.ts", "**/*"],
-  "exclude": ["dist", "public/pagefind"],
-  "compilerOptions": {
-    "paths": {
-      "@/*": ["./src/*"],
-      "@/astro-paper.config": ["./astro-paper.config"]
+    "extends": "astro/tsconfigs/strict",
+    "include": [
+        ".astro/types.d.ts",
+        "**/*"
+    ],
+    "exclude": [
+        "dist",
+        "public"
+    ],
+    "compilerOptions": {
+        "jsx": "react-jsx",
+        "jsxImportSource": "react",
+        "verbatimModuleSyntax": false,
+        "paths": {
+            "@/*": [
+                "./src/*"
+            ]
+        }
     }
-  }
 }
