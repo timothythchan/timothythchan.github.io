@@ -1,137 +1,213 @@
 ---
-import { getCollection } from "astro:content";
-import { getRelativeLocaleUrl } from "astro:i18n";
-import IconRss from "@/assets/icons/IconRss.svg";
-import IconArrowRight from "@/assets/icons/IconArrowRight.svg";
 import Layout from "@/layouts/Layout.astro";
-import Header from "@/components/Header.astro";
-import Footer from "@/components/Footer.astro";
-import Socials from "@/components/Socials.astro";
-import Card from "@/components/Card.astro";
-import LinkButton from "@/components/LinkButton.astro";
-import { getSortedPosts } from "@/utils/getSortedPosts";
-import { useTranslations } from "@/i18n";
-import config from "@/config";
+import { SITE_CONFIG } from "@/config";
 
-const { socials, posts: postsConfig } = config;
+import {
+    Content as AboutContent,
+    frontmatter as aboutFrontmatter,
+} from "@/content/pages/about.md";
 
-const locale = Astro.currentLocale ?? config.site.lang;
-const t = useTranslations(locale);
-
-const posts = await getCollection("posts");
-const sortedPosts = getSortedPosts(posts);
-const featuredPosts = sortedPosts.filter(({ data }) => data.featured);
-const recentPosts = sortedPosts.filter(({ data }) => !data.featured);
-const homePath = getRelativeLocaleUrl(locale, "");
+import DecryptedText from "@/components/ui/DecryptedText";
+import CursorGlow from "@/components/ui/CursorGlow";
+import HarmonicSystemSVG from "@/components/ui/HarmonicSystemSVG.astro";
 ---
 
-<Layout>
-  <Header />
-  <main
-    id="main-content"
-    data-layout="index"
-    data-home-path={homePath}
-    class="app-layout my-1"
-  >
-    <section id="hero" class="border-border border-b pt-8 pb-6">
-      <h1 class="my-4 inline-block text-4xl font-bold sm:my-8 sm:text-5xl">
-        Timothy Chan
-      </h1>{" "}
-      <a
-        target="_blank"
-        href={`${import.meta.env.BASE_URL.replace(/\/?$/, "/")}rss.xml`}
-        class="inline-block"
-        aria-label="RSS Feed"
-        title="RSS Feed"
-      >
-        <IconRss
-          width={20}
-          height={20}
-          class="stroke-accent scale-125 stroke-3 rtl:-rotate-90"
-        />
-        <span class="sr-only">RSS Feed</span>
-      </a>
+<Layout
+    title={`HOME // ${SITE_CONFIG.title}`}
+    description={SITE_CONFIG.description}
+>
+    <!-- Cursor Glow (Desktop only: mobile has no cursor) -->
+    <CursorGlow
+        client:media="(min-width: 768px)"
+    />
 
-      <p>
-        Columbia Statistics · Quantitative Research and Trading · ML/AI System
-        Engineering. I work on mathematical and statistical modelling, algorithm
-        design, and building ML/AI systems.
-      </p>
-      <p class="mt-2">
-        This is where I write about mathematics, AI engineering, and research.
-        Read the posts below or learn more{" "}
-        <LinkButton
-          class="hover:text-accent underline decoration-dashed underline-offset-4"
-          href="/about"
+    <!-- Background Layer -->
+    <div
+        class="fixed inset-0 flex items-center justify-center md:items-end md:justify-end z-[-1] pointer-events-none opacity-15 dark:opacity-30 overflow-hidden"
+    >
+        <div
+            class="relative w-[120vw] md:w-[800px] aspect-square md:-mr-32 md:-mb-32 flex items-center justify-center"
         >
-          about me
-        </LinkButton>.
-      </p>
-      {
-        socials.length > 0 && (
-          <div class="mt-4 flex max-sm:flex-col sm:items-center">
-            <div class="me-2 mb-1 whitespace-nowrap sm:mb-0">
-              {t.home.socialLinks}:
-            </div>
-            <Socials />
-          </div>
-        )
-      }
-    </section>
-
-    {
-      featuredPosts.length > 0 && (
-        <section
-          id="featured"
-          class:list={[
-            "pt-12 pb-6",
-            { "border-border border-b": recentPosts.length > 0 },
-          ]}
-        >
-          <h2 class="text-2xl font-semibold tracking-wide">
-            {t.home.featured}
-          </h2>
-          <ul>
-            {featuredPosts.map(data => (
-              <Card variant="h3" {...data} />
-            ))}
-          </ul>
-        </section>
-      )
-    }
-
-    {
-      recentPosts.length > 0 && (
-        <section id="recent-posts" class="pt-12 pb-6">
-          <h2 class="text-2xl font-semibold tracking-wide">
-            {t.home.recentPosts}
-          </h2>
-          <ul>
-            {recentPosts.slice(0, postsConfig.perIndex).map(data => (
-              <Card variant="h3" {...data} />
-            ))}
-          </ul>
-        </section>
-      )
-    }
-
-    <div class="my-8 text-center">
-      <LinkButton href={getRelativeLocaleUrl(locale, "posts")}>
-        {t.home.allPosts}
-        <IconArrowRight class="inline-block rtl:-rotate-180" />
-      </LinkButton>
+            <HarmonicSystemSVG
+            />
+        </div>
     </div>
-  </main>
-  <Footer />
+
+    <!-- Foreground Content Layer -->
+    <div
+        class="relative z-10 w-full min-h-screen flex flex-col pt-4 md:pt-8 pb-20 sm:px-4 md:px-12"
+    >
+        <!-- Reading Content Wrapper -->
+        <div
+            class="max-w-2xl mx-auto md:mx-0 w-full"
+        >
+            <!-- Header Area -->
+            <div>
+                <h1
+                    class="animate-cascade-header font-serif text-5xl md:text-7xl font-normal leading-none tracking-tight text-black dark:text-white mb-2"
+                >
+                    <DecryptedText
+                        client:idle
+                        text={SITE_CONFIG.author}
+                        speed={40}
+                        maxIterations={20}
+                        sequential={true}
+                        revealDirection="start"
+                        animateOn="view"
+                    />.
+                </h1>
+
+                <!-- Description -->
+                <p
+                    class="animate-cascade-description text-sm text-gray-500 italic mt-6 md:mt-8"
+                >
+                    {
+                        aboutFrontmatter.description
+                    }
+                </p>
+            </div>
+
+            <!-- About Section (LCP Element rendered smoothly) -->
+            <div class="animate-cascade-prose">
+                <div
+                    class="prose dark:prose-invert max-w-none prose-p:leading-relaxed prose-p:text-base text-gray-800 dark:text-gray-300 mt-12 space-y-6"
+                >
+                    <AboutContent
+                    />
+                </div>
+            </div>
+
+            <!-- Signature -->
+            <div class="signature-wrap animate-cascade-signature text-right mt-10">
+                <span
+                    class="signature-text group/sig relative inline-block italic font-serif text-gray-600 dark:text-gray-400 text-lg cursor-default select-none transition-all duration-500 ease-out hover:tracking-wider hover:text-black dark:hover:text-white"
+                >
+                    <span>
+                        {
+                            SITE_CONFIG.signature ||
+                                SITE_CONFIG.author
+                        }
+                    </span>
+                    <span
+                        class="absolute -bottom-1 left-0 w-full h-[1px] bg-current opacity-30 scale-x-0 group-hover/sig:scale-x-100 origin-left transition-transform duration-500 ease-out pointer-events-none"
+                    />
+                </span>
+            </div>
+
+            <!-- CTA Links -->
+            <div>
+                <div
+                    class="flex flex-col sm:flex-row gap-6 sm:gap-8 mt-16 md:mt-20"
+                >
+                    {
+                        SITE_CONFIG.homepage.links.map(
+                            (
+                                link,
+                            ) => (
+                                <a
+                                    href={
+                                        link.href
+                                    }
+                                    class="cascade-link-item group flex items-center gap-2 text-xs font-medium tracking-widest uppercase text-gray-500 hover:text-black dark:hover:text-white transition-colors"
+                                >
+                                    <span class="relative">
+                                        {
+                                            link.text
+                                        }
+                                        <span class="absolute -bottom-1 left-0 w-full h-[1px] bg-gray-500 scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300" />
+                                    </span>
+                                    <span class="transition-transform group-hover:translate-x-1">
+                                        →
+                                    </span>
+                                </a>
+                            ),
+                        )
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
 </Layout>
 
-<script>
-  document.addEventListener("astro:page-load", () => {
-    const indexLayout = (document.querySelector("#main-content") as HTMLElement)
-      ?.dataset;
-    const baseRoot = import.meta.env.BASE_URL.replace(/\/?$/, "/");
-    if (indexLayout?.layout) {
-      sessionStorage.setItem("backUrl", indexLayout.homePath ?? baseRoot);
+<style>
+/* ==========================================================================
+   CASCADE ENTRANCE SYSTEM (Route A: Zero-JS, 60fps GPU Composited)
+   Restores cinema-grade staggered blur & elevation sequence
+   with ultra-smooth cubic-bezier spring easing, while protecting LCP.
+   ========================================================================== */
+
+@keyframes cascade-reveal {
+    0% {
+        opacity: 0;
+        filter: blur(8px);
+        transform: translateY(16px);
     }
-  });
-</script>
+    100% {
+        opacity: 1;
+        filter: blur(0px);
+        transform: translateY(0);
+    }
+}
+
+/* Specific keyframe for LCP prose: starts from 0.88 opacity with subtle lift
+   Ensures text is instantly recognized & painted by browser engine on frame 1,
+   while providing a gentle, natural settling motion to the eye */
+@keyframes cascade-prose-reveal {
+    0% {
+        opacity: 0.88;
+        transform: translateY(10px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animate-cascade-header {
+    animation: cascade-reveal 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.05s both;
+    will-change: opacity, transform, filter;
+}
+
+.animate-cascade-description {
+    animation: cascade-reveal 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.15s both;
+    will-change: opacity, transform, filter;
+}
+
+.animate-cascade-prose {
+    animation: cascade-prose-reveal 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.22s both;
+    will-change: opacity, transform;
+}
+
+.animate-cascade-signature {
+    animation: cascade-reveal 0.85s cubic-bezier(0.16, 1, 0.3, 1) 0.35s both;
+    will-change: opacity, transform, filter;
+}
+
+.cascade-link-item:nth-child(1) {
+    animation: cascade-reveal 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.45s both;
+    will-change: opacity, transform, filter;
+}
+
+.cascade-link-item:nth-child(2) {
+    animation: cascade-reveal 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.55s both;
+    will-change: opacity, transform, filter;
+}
+
+/* Accessibility: gracefully disable motion when requested */
+@media (prefers-reduced-motion: reduce) {
+    .animate-cascade-header,
+    .animate-cascade-description,
+    .animate-cascade-prose,
+    .animate-cascade-signature,
+    .cascade-link-item {
+        animation: none !important;
+        opacity: 1 !important;
+        filter: none !important;
+        transform: none !important;
+        will-change: auto !important;
+    }
+    .signature-text {
+        transition: none !important;
+    }
+}
+</style>

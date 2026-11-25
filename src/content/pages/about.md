@@ -1,7 +1,9 @@
 ---
 title: "About"
-description: "A bit about Timothy Chan."
+description: "Columbia Statistics · Quantitative Research and Trading · ML/AI System Engineering."
 ---
+
+## About
 
 Bred in literature and social science, trained in applied mathematics. With the
 best of both worlds I give scientific research and innovation a touch of
@@ -24,9 +26,9 @@ occasionally in sports analytics.
 - **Columbia University** — M.A. in Statistics (2025–2026)
 - **University of Hong Kong** — B.A. in Political Science and Chinese Literature (2019–2023)
 
-## Get in touch
+## Contact
 
-I'm open to job opportunities and collaboration. Feel free to reach out by
+I'm open to opportunities and collaboration. Reach me by
 [email](mailto:timothy.chan@stern.nyu.edu), or find me on
 [GitHub](https://github.com/timothythchan) and
 [LinkedIn](https://linkedin.com/in/timothythchan/).
